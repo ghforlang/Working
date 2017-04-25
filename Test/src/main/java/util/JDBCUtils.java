@@ -1,4 +1,4 @@
-package paginator.util;
+package util;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -18,17 +18,18 @@ import java.io.InputStream;
  */
 public class JDBCUtils {
 
-    private static final String MYBATIS_CONFIG = "paginator/mybatis-config.xml";
+    private static final String MYBATIS_CONFIG = "";
 
-    public static SqlSession getSession() throws IOException {
-        return getSqlSessioinFactory() == null ? null : getSqlSessioinFactory().openSession();
+    public static SqlSession getSession(String configFile) throws IOException {
+        return getSqlSessioinFactory(configFile) == null ? null : getSqlSessioinFactory(configFile).openSession();
     }
 
-    public static SqlSessionFactory getSqlSessioinFactory() throws IOException {
+
+    public static SqlSessionFactory getSqlSessioinFactory(String configFile) throws IOException {
         InputStream inputStream = null;
         SqlSessionFactory sqlSessionFactory = null;
         try {
-            inputStream = Resources.getResourceAsStream(MYBATIS_CONFIG);
+            inputStream = Resources.getResourceAsStream(configFile);
             sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
         } finally{
                 if(inputStream != null){

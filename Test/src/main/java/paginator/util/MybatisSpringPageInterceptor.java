@@ -14,7 +14,6 @@ import org.apache.ibatis.scripting.defaults.DefaultParameterHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import paginator.Page;
-import sun.plugin.javascript.ReflectUtil;
 
 import java.lang.reflect.Field;
 import java.sql.Connection;

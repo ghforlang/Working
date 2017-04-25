@@ -10,8 +10,16 @@ import java.util.List;
  **/
 public class LatestNews {
     private String date;
-    private List<TopStory> topStories;
+    private List<TopStory> top_stories;
     private List<Story> stories;
+
+    public List<TopStory> getTop_stories() {
+        return top_stories;
+    }
+
+    public void setTop_stories(List<TopStory> top_stories) {
+        this.top_stories = top_stories;
+    }
 
     public String getDate() {
         return date;
@@ -19,14 +27,6 @@ public class LatestNews {
 
     public void setDate(String date) {
         this.date = date;
-    }
-
-    public List<TopStory> getTopStories() {
-        return topStories;
-    }
-
-    public void setTopStories(List<TopStory> topStories) {
-        this.topStories = topStories;
     }
 
     public List<Story> getStories() {
@@ -117,6 +117,8 @@ public class LatestNews {
         public void setTitle(String title) {
             this.title = title;
         }
+
+
 
         public String toString() {
             return "id =  " + id + ", title = " + title + ", images = " + images.get(0) + ", type = " + type + "\n";

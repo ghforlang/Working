@@ -1,8 +1,9 @@
 package paginator.mapper;
 
+import constant.ConfigFileConstant;
 import org.apache.ibatis.session.SqlSession;
 import paginator.po.User;
-import paginator.util.JDBCUtils;
+import util.JDBCUtils;
 
 import java.io.IOException;
 
@@ -19,7 +20,7 @@ public class UserService {
         SqlSession session = null;
         int result = 0;
         try {
-            session = JDBCUtils.getSession();
+            session = JDBCUtils.getSession(ConfigFileConstant.MYBATIS_PAGINATOR_CONFIG);
             UserMapper mapper = session.getMapper(UserMapper.class);
             result = mapper.save(u);
             session.commit();

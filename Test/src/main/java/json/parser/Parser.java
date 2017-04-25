@@ -5,6 +5,8 @@ import json.tokenizer.Token;
 import json.tokenizer.TokenType;
 import json.tokenizer.Tokenizer;
 
+import java.io.BufferedReader;
+import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -41,7 +43,12 @@ public class Parser {
         return map;
     }
 
-
+    public static JObject parseJSONObject(String s) throws Exception {
+        Tokenizer tokenizer = new Tokenizer(new BufferedReader(new StringReader(s)));
+        tokenizer.tokenize();
+        Parser parser = new Parser(tokenizer);
+        return parser.object();
+    }
 
     private boolean isToken(TokenType tokenType){
         Token t = tokenizer.peek(0);
