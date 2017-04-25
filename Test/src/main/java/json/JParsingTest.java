@@ -21,7 +21,8 @@ public class JParsingTest {
     public static final String urlString = "http://news-at.zhihu.com/api/4/news/latest";
 
     public static void main(String[] args){
-        String jsonStr = new String(HttpUtil.get(urlString));
+//        String jsonStr = new String(HttpUtil.get(urlString));
+        String jsonStr = "{\"id\" : \"11\"}";
 
         try {
             long startTime = System.currentTimeMillis();

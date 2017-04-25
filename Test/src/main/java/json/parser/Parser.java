@@ -39,7 +39,33 @@ public class Parser {
 
     private Map<String,Value> key(Map<String,Value> map){
         String key = tokenizer.next().getValue();
-//        -----暂时到这里------
+        try{
+            if(!isToken(TokenType.COLON)){
+                throw new JsonParseException("无效输入！");
+            }else{
+                tokenizer.next();
+                if(isPrimary()){
+                    Value primary = new Primary(tokenizer.next().getValue());
+                    map.put(key,primary);
+                }else if(isToken(TokenType.START_ARRAY)){
+                    Value array = array();
+                    map.put(key,array);
+                }
+                if(isToken(TokenType.COMMA)){
+                    tokenizer.next();
+                    if(isToken(TokenType.STRING)){
+                        map = key(map);
+                    }else if(isToken(TokenType.END_OBJ)){
+                        tokenizer.next();
+                        return map;
+                    }else{
+                        throw new JsonParseException("无效输入！");
+                    }
+                }
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         return map;
     }
 
