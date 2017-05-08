@@ -1,6 +1,5 @@
 package other;
 
-import org.apache.ibatis.io.ResolverUtil;
 
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -50,7 +49,7 @@ public class TestFunction {
                 System.out.println("x = " + x);
                 System.out.println("y = " + y);
                 System.out.println("this.X = " + this.x);
-                System.out.println("TestFunction.this.x = " + TestFunction.this.x);
+                System.out.println("TestFunction.this.x = " + this.x);
             };
 
             myConsumer.accept(x);
@@ -59,7 +58,7 @@ public class TestFunction {
 
     public static void test2(){
         TestFunction function = new TestFunction();
-        function.FirstLevel firstLevel =
+//        function.FirstLevel firstLevel = null;
     }
 }
 
