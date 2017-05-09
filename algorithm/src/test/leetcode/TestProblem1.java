@@ -16,8 +16,8 @@ import main.utils.TimeCaculateUtils;
 
 public class TestProblem1 {
 
-    private static final int[] src = {2, 0, 11, 7};
-    private static final int SUM = 9;
+    private static final int[] src = {1, 2, 3, 4,5,6};
+    private static final int SUM = 6;
 
     public static void main(String[] args){
         testSolutionOne();
@@ -27,22 +27,27 @@ public class TestProblem1 {
 
     private static void testSolutionOne(){
         long start = System.currentTimeMillis();
-        Problem1.solutionOne(src,SUM);
+        int[] result = Problem1.solutionOne(src,SUM);
         long end = System.currentTimeMillis();
-        System.out.println("solutionOne : " + TimeCaculateUtils.getRunningTime(start,end));
+        System.out.print("solutionOne : " + TimeCaculateUtils.getRunningTime(start,end) + "| ");
+        System.out.println(result[0] + "," + result[1]);
     }
 
     private static void testSolutionTwo(){
         long start = System.currentTimeMillis();
-        Problem1.solutionTwo(src,SUM);
+        int[] result = Problem1.solutionTwo(src,SUM);
         long end = System.currentTimeMillis();
-        System.out.println("solutionTwo : " + TimeCaculateUtils.getRunningTime(start,end));
+
+        System.out.print("solutionTwo : " + TimeCaculateUtils.getRunningTime(start,end) + "| ");
+        System.out.println(result[0] + "," + result[1]);
     }
 
     private static void testSolutionThree(){
         long start = System.currentTimeMillis();
-        Problem1.solutionThree(src,SUM);
+        int[] result = Problem1.solutionThree(src,SUM);
         long end = System.currentTimeMillis();
-        System.out.println("solutionThree : " + TimeCaculateUtils.getRunningTime(start,end));
+
+        System.out.print("solutionThree : " + TimeCaculateUtils.getRunningTime(start,end) + "| ");
+        System.out.println(result[0] + "," + result[1]);
     }
 }
