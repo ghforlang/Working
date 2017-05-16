@@ -62,23 +62,12 @@ public class Problem1 {
     }
 
     /**
-     * hashtable,一次循环完成所有，相比solutionTwo少一次循环
+     * hashtable,一次循环完成所有，相比solutionTwo少一次循环，但是存在一些问题
      * @param src
      * @param target
      * @return
      */
     public static int[] solutionThree(int[] src,int target){
-//        Map<Integer,Integer> map = new HashMap<>();
-//        int complement = -1;
-//        for(int i=0;i<src.length;i++){
-//            complement = target - src[i];
-//            if(map.containsKey(complement) && map.get(complement) != i){
-//                return  new int[]{i,complement};
-//            }
-//            map.put(src[i],i);
-//        }
-//        throw new AlgorithmException("no solution!");
-
         Map<Integer, Integer> map = new HashMap<>();
         for (int i = 0; i < src.length; i++) {
             int complement = target - src[i];

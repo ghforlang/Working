@@ -20,8 +20,8 @@ public class TestProblem1 {
     private static final int SUM = 6;
 
     public static void main(String[] args){
-        testSolutionOne();
-        testSolutionTwo();
+//        testSolutionOne();
+//        testSolutionTwo();
         testSolutionThree();
     }
 
