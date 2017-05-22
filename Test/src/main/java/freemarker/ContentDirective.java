@@ -19,7 +19,7 @@ public class ContentDirective implements TemplateDirectiveModel {
 
     private static final String PARAM_NAME = "name";
     private static final String PARAM_AGE = "age";
-    private static final ObjectWrapper DEFAULT_WRAPPER = new DefaultObjectWrapperBuilder().build();
+    private static final ObjectWrapper DEFAULT_WRAPPER = new DefaultObjectWrapperBuilder(Configuration.VERSION_2_3_23).build();
 
 
     @Override
