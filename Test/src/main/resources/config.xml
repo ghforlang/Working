@@ -11,7 +11,20 @@
     <settings>
         <setting name="logImpl" value="LOG4J"/>
     </settings>
-
+    <plugins>
+        <plugin interceptor="myBatis.plugin.MyPlugin">
+            <!-- 默认页码 -->
+            <property name="default.page" value="1" />
+            <!-- 默认每页条数-->
+            <property name="default.pageSize" value="20" />
+            <!-- 是否启动分页插件功能  -->
+            <property name="default.useFlag" value="true" />
+            <!-- 是否检查页码有效性，如果非有效，则抛出异常. -->
+            <property name="default.checkFlag" value="false" />
+            <!-- 针对哪些含有order by的SQL，是否去掉最后一个order by 以后的SQL语句，提高性能 -->
+            <property name="default.cleanOrderBy" value="false" />
+        </plugin>
+    </plugins>
     <environments default="development">
         <environment id="development">
             <transactionManager type="JDBC"/>
@@ -34,9 +47,6 @@
             </dataSource>
         </environment>
     </environments>
-    <plugins>
-        <plugin interceptor=""></plugin>
-    </plugins>
     <!-- 映射文件，mybatis精髓， 后面才会细讲 -->
     <mappers>
         <mapper resource="./UserMapper.xml"/>

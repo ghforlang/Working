@@ -15,9 +15,11 @@ public class User implements Serializable {
     private long id;
     private String userName;
     private String password;
+    private String roleName;
     private String noteInfo;
     private Date createTime;
     private Date updateTime;
+
 
     public long getId() {
         return id;
@@ -72,4 +74,11 @@ public class User implements Serializable {
         return userName + "say hello to you";
     }
 
+    public String getRoleName() {
+        return roleName;
+    }
+
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
+    }
 }

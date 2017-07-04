@@ -20,8 +20,47 @@
     </select>
 
     <insert id="save" useGeneratedKeys="true" keyProperty="id" parameterType="myBatis.po.User">
-        insert into user(user_name,password,note_info,create_time,update_time)
+        insert into user(user_name,password,role_name,note_info,create_time,update_time)
         values
-        (#{userName},#{password},#{noteInfo},now(),now())
+        (#{userName},#{password},#{roleName},#{noteInfo},now(),now())
     </insert>
+
+    <select id="selectAllUser" parameterType="myBatis.plugin.TestPageParams1" resultType="myBatis.po.User">
+        select id, role_name as roleName, note_info from user
+        <where>
+            <if test="roleName != null">
+                role_name like concat('%', #{roleName}, '%')
+            </if>
+        </where>
+        order by id desc
+    </select>
+
+    <select id="selectAllUser2" parameterType="myBatis.plugin.TestPageParams2" resultType="myBatis.po.User">
+        select id, role_name as roleName, note_info from user
+        <where>
+            <if test="roleName != null">
+                role_name like concat('%', #{roleName}, '%')
+            </if>
+        </where>
+        order by id desc
+    </select>
+
+    <select id="selectUserByMap" parameterType="map" resultType="myBatis.po.User">
+        select id, role_name as roleName, note_info from user
+        <where>
+            <if test="roleName != null">
+                role_name like concat('%', #{roleName}, '%')
+            </if>
+        </where>
+        order by id desc
+    </select>
+    <select id="selectUserByMap2" resultType="myBatis.po.User">
+        select id,role_name as roleName,note_info form user
+        <where>
+            <if test="roleName != null">
+                role_name like concat('%',#{roleName},'%')
+            </if>
+        </where>
+    </select>
+
 </mapper>
