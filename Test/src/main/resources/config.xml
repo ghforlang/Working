@@ -34,7 +34,9 @@
             </dataSource>
         </environment>
     </environments>
-
+    <plugins>
+        <plugin interceptor=""></plugin>
+    </plugins>
     <!-- 映射文件，mybatis精髓， 后面才会细讲 -->
     <mappers>
         <mapper resource="./UserMapper.xml"/>

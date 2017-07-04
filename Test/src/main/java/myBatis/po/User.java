@@ -66,4 +66,10 @@ public class User implements Serializable {
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
+
+    private String sayHello(){
+        System.out.println(userName + "say hello to you");
+        return userName + "say hello to you";
+    }
+
 }

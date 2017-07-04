@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.gov.wu.biz.mapper.BannerMapper">
+    <resultMap id="resultMap" type="mtc.ad.dataobject.AdBannerDO">
+        <result property="id" column="id"/>
+        <result property="bannerName" column="banner_name"/>
+        <result property="picture" column="picture"/>
+        <result property="url" column="URL"/>
+        <result property="mtcId" column="mtc_id"/>
+        <result property="isDeleted" column="is_deleted"/>
+        <result property="state" column="state"/>
+        <result property="sortNo" column="sort_no"/>
+        <result property="createUserId" column="create_user_id"/>
+        <result property="modifyUserId" column="modify_user_id"/>
+        <result property="createTime" column="gmt_created"/>
+        <result property="modifiedTime" column="gmt_modified"/>
+        <result property="validStartTime" column="valid_start_time"/>
+        <result property="validEndTime" column="valid_end_time"/>
+    </resultMap>
+
+    <sql id="allColumn">
+        id,banner_name,picture,URL,mtc_id,is_deleted,state,sort_no,create_user_id,modify_user_id,gmt_created,gmt_modified,valid_start_time,valid_end_time
+    </sql>
+    <select id="queryByType" resultMap="resultMap">
+        select <include refid="allColumn"/> FROM banner_manage
+        where activied = 1 and  banner_type = #{type} ORDER BY order_col
+    </select>
+
+    <select id="queryByHospitalIdAndType" resultMap="resultMap">
+        select <include refid="allColumn"/> FROM banner_manage
+        where activied = 1 and  banner_type = #{type} and hospital_id = #{hospitalId} ORDER BY order_col
+    </select>
+</mapper>

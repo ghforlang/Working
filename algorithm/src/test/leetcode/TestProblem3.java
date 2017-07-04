@@ -11,12 +11,13 @@ import main.leetcode.problems.Problem3;
  *  
  */
 public class TestProblem3 {
-    private static final String[] str ={
-            "c",
-            " ",
+    private static final String[] str = {
+//            "c",
+            "aab",
 //            "abcabcbb",
 //            "bbbbb",
-            "pwwkew"};
+//            "pwwkew"};
+    };
 
     public static void main(String[] args){
         testSolutionOne();

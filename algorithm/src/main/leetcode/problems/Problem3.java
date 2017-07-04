@@ -29,7 +29,7 @@ public class Problem3 {
                     i = j;
                 }
             }
-            result = max;
+            result = max > set.size() ? max : set.size();
         }
         return result;
     }
