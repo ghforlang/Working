@@ -23,8 +23,8 @@ import java.util.Map;
 public class TestMyPlugin {
     private static final Logger LOGGER = Logger.getLogger(TestMyPlugin.class);
     public static void main(String[] args) {
-        testGetUser();
-//        testInherit();
+//        testGetUser();
+        testInherit();
 //        testAtParam();
 //        testMap();
 //        testPojoProperty();

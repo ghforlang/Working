@@ -10,12 +10,12 @@ package other.myproxy;
  */
 public class OtherServiceImpl implements OtherService {
     @Override
-    public String method1() {
-        return "this is method1 invoking";
+    public void method1() {
+        System.out.println("this is method1 invoking");
     }
 
     @Override
-    public String method2() {
-        return "this is method2 invoking";
+    public void method2() {
+        System.out.println("this is method2 invoking");
     }
 }

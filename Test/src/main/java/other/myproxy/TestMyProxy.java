@@ -17,7 +17,7 @@ public class TestMyProxy {
         OtherService service = new OtherServiceImpl();
 
         service = (OtherService)myProxy.bind(service,new Class[]{OtherService.class});
-        System.out.println(service.method1());
+        service.method1();
 
 
         //调用构造方法绑定,然后再绑定代理
@@ -25,6 +25,6 @@ public class TestMyProxy {
         myProxy = new MyProxy(otherService);
 
         OtherService realService = (OtherService) Proxy.newProxyInstance(otherService.getClass().getClassLoader(),service.getClass().getInterfaces(),myProxy);
-        System.out.println(realService.method2());
+        realService.method2();
     }
 }

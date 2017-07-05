@@ -9,6 +9,6 @@ package other.myproxy;
  *  
  */
 public interface OtherService {
-    public String method1();
-    public String method2();
+    public void method1();
+    public void method2();
 }
