@@ -55,7 +55,7 @@
         order by id desc
     </select>
     <select id="selectUserByMap2" resultType="myBatis.po.User">
-        select id,role_name as roleName,note_info form user
+        select id,role_name as roleName,note_info from user
         <where>
             <if test="roleName != null">
                 role_name like concat('%',#{roleName},'%')

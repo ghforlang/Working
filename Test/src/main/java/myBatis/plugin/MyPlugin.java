@@ -4,10 +4,7 @@ import org.apache.ibatis.executor.parameter.ParameterHandler;
 import org.apache.ibatis.executor.statement.StatementHandler;
 import org.apache.ibatis.mapping.BoundSql;
 import org.apache.ibatis.mapping.MappedStatement;
-import org.apache.ibatis.plugin.Interceptor;
-import org.apache.ibatis.plugin.Intercepts;
-import org.apache.ibatis.plugin.Invocation;
-import org.apache.ibatis.plugin.Signature;
+import org.apache.ibatis.plugin.*;
 import org.apache.ibatis.reflection.MetaObject;
 import org.apache.ibatis.reflection.SystemMetaObject;
 import org.apache.ibatis.scripting.defaults.DefaultParameterHandler;
@@ -96,8 +93,8 @@ public class MyPlugin implements Interceptor{
     }
 
     @Override
-    public Object plugin(Object target) {
-        return null;
+    public Object plugin(Object statementHandler) {
+        return Plugin.wrap(statementHandler,this);
     }
 
     @Override
@@ -185,9 +182,11 @@ public class MyPlugin implements Interceptor{
             Field[] fields = paramObject.getClass().getDeclaredFields();
             //尝试从POJO中获得类型为PageParams的属性
             for (Field field: fields) {
-                PropertyDescriptor pd = new PropertyDescriptor(field.getName(),paramObject.getClass());
-                Method method = pd.getReadMethod();
-                return (PageParams)method.invoke(paramObject);
+                if(field.getType().equals(PageParams.class)){//若有则进行转化
+                    PropertyDescriptor pd = new PropertyDescriptor(field.getName(),paramObject.getClass());
+                    Method method = pd.getReadMethod();
+                    return (PageParams)method.invoke(paramObject);
+                }
             }
         }
         return pageParms;
@@ -213,6 +212,7 @@ public class MyPlugin implements Interceptor{
             ParameterHandler countSqlHandler = new DefaultParameterHandler(mapStatement,boundSql.getParameterObject(),countBoundSql);
             countSqlHandler.setParameters(preparedStatement);
             ResultSet rs = preparedStatement.executeQuery();
+            total = 0;
             while(rs.next()){
                 total = rs.getInt("total");
             }
@@ -226,9 +226,9 @@ public class MyPlugin implements Interceptor{
 
     private String getCountSql(String sql, String dbType) {
         if (DB_TYPE_ORACLE.equals(dbType)) {
-            return "select count(*) from (" + sql + ")";
+            return "select count(*) as total from (" + sql + ")";
         }else if(DB_TYPE_MYSQL.equals(dbType)){
-            return "select count(*) from (" + sql + ") $_paging";
+            return "select count(*) as total from (" + sql + ") $_paging";
         }else{
             throw new IllegalArgumentException("插件不支持当前操作");
         }
