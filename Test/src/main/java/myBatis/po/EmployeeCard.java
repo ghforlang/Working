@@ -14,6 +14,7 @@ public class EmployeeCard implements Serializable{
 
     private static final long serialVersionUID = 5123036774744089746L;
 
+    private Integer id;
     private Integer empId;
     private Integer cardNo;
 
@@ -31,5 +32,9 @@ public class EmployeeCard implements Serializable{
 
     public void setCardNo(Integer cardNo) {
         this.cardNo = cardNo;
+    }
+
+    public Integer getId() {
+        return id;
     }
 }

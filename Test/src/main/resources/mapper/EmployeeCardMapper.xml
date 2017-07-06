@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="myBatis.dao.EmployeeCardMapper">
+
+    <resultMap id="resultMap" type="myBatis.po.EmployeeCard">
+        <result column="id" property="id"/>
+        <result column="emp_id" property="empId"/>
+        <result column="card_no" property="cardNo"/>
+    </resultMap>
+
+    <select id="getEmployeeCardByEmpId" parameterType="int" resultMap="resultMap">
+        select * from t_employee_card where emp_id = #{id}
+    </select>
+</mapper>

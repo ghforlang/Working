@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="myBatis.dao.EmployeeMapper">
+    <resultMap id="employeeMap" type="myBatis.po.Employee">
+        <id property="id" column="id" />
+        <result property="empName" column="emp_name" />
+        <result property="sex" column="sex" />
+
+        <!--<association property="employeeCard" column="id" resultMap="employeeCardResult" javaType="myBatis.po.EmployeeCard" fetchType="lazy"/>-->
+        <!--<collection property="projectList" column="id" resultMap="projectListResult" ofType="myBatis.po.Project" fetchType="eager"/>-->
+        <association property="employeeCard" column="id" select="myBatis.dao.EmployeeCardMapper.getEmployeeCardByEmpId" javaType="myBatis.po.EmployeeCard"/>
+        <collection property="projectList" column="id" select="myBatis.dao.ProjectMapper.findProjectByEmpId" javaType="java.util.List" ofType="myBatis.po.Project"/>
+        <discriminator javaType="int" column="sex">
+            <case value="1" resultMap="maleEmployeeMap"/>
+            <case value="2">
+                <association property="sex" resultMap="femaleEmployeeMap"/>
+            </case>
+        </discriminator>
+    </resultMap>
+
+    <select id="getEmployee" parameterType="int" resultMap="employeeMap">
+        select id,emp_name,sex from t_employee  where id = #{id}
+    </select>
+
+    <resultMap id="maleEmployeeMap" type="myBatis.po.MaleEmployee" extends="employeeMap">
+        <collection column="id" property="prostateList" select="myBatis.dao.MaleEmployeeMapper.findProstateList"/>
+    </resultMap>
+    
+    <resultMap id="femaleEmployeeMap" type="myBatis.po.FemaleEmployee" extends="employeeMap">
+        <collection column="id" property="uterusList" select="myBatis.dao.FemaleEmployeeMapper.findUterusList"/>
+    </resultMap>
+
+    <resultMap id="employeeCardResult" type="myBatis.po.EmployeeCard">
+        <id  property="id" column="id"/>
+        <result property="cardNo" column="card_no"/>
+        <result property="empId" column="emp_id"/>
+    </resultMap>
+
+    <resultMap id="projectListResult" type="myBatis.po.Project">
+        <id property="id" column="id"/>
+        <result property="projName" column="proj_name"/>
+    </resultMap>
+
+    <!--集合嵌套选择（Nested Select for Collection）可能会引起N+1问题 -->
+    <!--集合的嵌套结果集（Nested Results for Collection）目前采用该方式-->
+</mapper>

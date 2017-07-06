@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="myBatis.dao.ProjectMapper">
+    <resultMap id="resultMap" type="myBatis.po.Project">
+        <result column="id" property="id"/>
+        <result column="proj_name" property="projName"/>
+    </resultMap>
+
+    <select id="findProjectByEmpId" parameterType="Integer" resultMap="resultMap">
+        select tp.id,tp.proj_name from t_project tp LEFT JOIN t_employee_project tep on tp.id= tep.proj_id AND tep.emp_id = #{empId};
+    </select>
+</mapper>

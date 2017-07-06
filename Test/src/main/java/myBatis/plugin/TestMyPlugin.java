@@ -24,9 +24,9 @@ public class TestMyPlugin {
     private static final Logger LOGGER = Logger.getLogger(TestMyPlugin.class);
     public static void main(String[] args) {
 //        testGetUser();
-        testInherit();
+//        testInherit();
 //        testAtParam();
-//        testMap();
+        testMap();
 //        testPojoProperty();
 //        testPoJoProperty2();
     }
