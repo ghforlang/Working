@@ -18,6 +18,7 @@ import java.io.InputStream;
 public class MyBatisUtils {
     private static final String DEFAULT_CONFIT_FILE = "config.xml";
 
+    private static final SqlSessionFactory DEFAULT_SQL_SESSIONFACTORY = null;
 
     public static SqlSessionFactory getSqlSessioinFactory(){
         InputStream inputStream = null;
@@ -40,4 +41,6 @@ public class MyBatisUtils {
         }
         return sqlSessionFactory;
     }
+
+    private static class SqlSessionFactoryHandler{}
 }

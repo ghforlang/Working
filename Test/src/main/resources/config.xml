@@ -3,7 +3,6 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-
     <!-- 指定properties配置文件， 我这里面配置的是数据库相关 -->
     <properties resource="db.properties">
         <property name="dialect" value="mysql"/>
@@ -16,6 +15,10 @@
         <setting name="lazyLoadingEnabled" value="true"/>
         <setting name="aggressiveLazyLoading" value="false"/>
     </settings>
+    <!--<typeAliases>-->
+        <!--<typeAlias type="myBatis.po.Item" alias="Item"/>-->
+        <!--<package name="myBatis"/>-->
+    <!--</typeAliases>-->
     <plugins>
         <plugin interceptor="myBatis.plugin.MyPlugin">
             <!-- 默认页码 -->
@@ -30,6 +33,7 @@
             <property name="default.cleanOrderBy" value="false" />
         </plugin>
     </plugins>
+
     <environments default="development">
         <environment id="development">
             <transactionManager type="JDBC"/>
@@ -54,12 +58,18 @@
     </environments>
     <!-- 映射文件，mybatis精髓， 后面才会细讲 -->
     <mappers>
+        <!--采用package加载mapper(有问题，暂时未解决)-->
+        <!--<package name="myBatis.dao"/>-->
+        <!--采用xml文件相对路径加载mapper-->
         <mapper resource="./mapper/UserMapper.xml"/>
-        <mapper resource="./mapper/EmployeeMapper.xml"/>
-        <mapper resource="./mapper/EmployeeCardMapper.xml"/>
-        <mapper resource="./mapper/FemaleEmployeeMapper.xml"/>
-        <mapper resource="./mapper/MaleEmployeeMapper.xml"/>
-        <mapper resource="./mapper/ProjectMapper.xml"/>
+        <!--<mapper resource="./mapper/EmployeeMapper.xml"/>-->
+        <!--<mapper resource="./mapper/EmployeeCardMapper.xml"/>-->
+        <!--<mapper resource="./mapper/FemaleEmployeeMapper.xml"/>-->
+        <!--<mapper resource="./mapper/MaleEmployeeMapper.xml"/>-->
+        <!--<mapper resource="./mapper/ProjectMapper.xml"/>-->
+        <!--同时支持 url,class这两种方式-->
+        <!--<mapper class="myBatis.dao.UserMapper"/>-->
+        <!--<mapper url="./mapper/UserMapper.xml"/>-->
     </mappers>
 
 </configuration>
