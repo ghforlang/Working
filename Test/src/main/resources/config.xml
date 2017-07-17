@@ -61,12 +61,12 @@
         <!--采用package加载mapper(有问题，暂时未解决)-->
         <!--<package name="myBatis.dao"/>-->
         <!--采用xml文件相对路径加载mapper-->
-        <mapper resource="./mapper/UserMapper.xml"/>
-        <!--<mapper resource="./mapper/EmployeeMapper.xml"/>-->
-        <!--<mapper resource="./mapper/EmployeeCardMapper.xml"/>-->
-        <!--<mapper resource="./mapper/FemaleEmployeeMapper.xml"/>-->
-        <!--<mapper resource="./mapper/MaleEmployeeMapper.xml"/>-->
-        <!--<mapper resource="./mapper/ProjectMapper.xml"/>-->
+        <!--<mapper resource="./mapper/UserMapper.xml"/>-->
+        <mapper resource="./mapper/EmployeeMapper.xml"/>
+        <mapper resource="./mapper/EmployeeCardMapper.xml"/>
+        <mapper resource="./mapper/FemaleEmployeeMapper.xml"/>
+        <mapper resource="./mapper/MaleEmployeeMapper.xml"/>
+        <mapper resource="./mapper/ProjectMapper.xml"/>
         <!--同时支持 url,class这两种方式-->
         <!--<mapper class="myBatis.dao.UserMapper"/>-->
         <!--<mapper url="./mapper/UserMapper.xml"/>-->

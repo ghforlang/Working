@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="myBatis.dao.EmployeeMapper">
+    <cache eviction="FIFO" flushInterval="60000" readOnly="true" size="512"/>
     <resultMap id="employeeMap" type="myBatis.po.Employee">
         <id property="id" column="id" />
         <result property="empName" column="emp_name" />
         <result property="sex" column="sex" />
+
+        <!--1.  MyBatis支持二级缓存的总开关：全局配置变量参数   cacheEnabled=true-->
+        <!--2. 该select语句所在的Mapper，配置了<cache> 或<cached-ref>节点，并且有效-->
+        <!--3. 该select语句的参数 useCache=true-->
 
         <!--<association property="employeeCard" column="id" resultMap="employeeCardResult" javaType="myBatis.po.EmployeeCard" fetchType="lazy"/>-->
         <!--<collection property="projectList" column="id" resultMap="projectListResult" ofType="myBatis.po.Project" fetchType="eager"/>-->
@@ -21,6 +26,10 @@
     <select id="getEmployee" parameterType="int" resultMap="employeeMap">
         select id,emp_name,sex from t_employee  where id = #{id}
     </select>
+
+    <update id="update" parameterType="int">
+        update t_employee te set te.emp_name = 'akall' where id = #{id}
+    </update>
 
     <resultMap id="maleEmployeeMap" type="myBatis.po.MaleEmployee" extends="employeeMap">
         <collection column="id" property="prostateList" select="myBatis.dao.MaleEmployeeMapper.findProstateList"/>

@@ -12,4 +12,6 @@ import myBatis.po.Employee;
  */
 public interface EmployeeMapper {
     Employee getEmployee(Integer empId);
+
+    void update(Integer empId);
 }

@@ -18,13 +18,48 @@ import util.MyBatisUtils;
  */
 public class TestCascade {
     Logger LOGGER = Logger.getLogger(TestCascade.class);
+
+
     @Test
     public void testCascade(){
         SqlSession sqlSession = null;
         try {
             sqlSession = MyBatisUtils.getSqlSessioinFactory().openSession();
             EmployeeMapper employeeMapper = sqlSession.getMapper(EmployeeMapper.class);
+            long firstTime = System.currentTimeMillis();
             Employee emp = employeeMapper.getEmployee(1);
+            long secondTime = System.currentTimeMillis();
+//            sqlSession.clearCache();;//可手动清理cache（达到禁用一级缓存的目的）
+            System.out.println("firstTime: " + (secondTime - firstTime));
+            long thirdTime = System.currentTimeMillis();
+            emp = employeeMapper.getEmployee(1);
+            long endTime = System.currentTimeMillis();
+            System.out.println("secondTime: " + (endTime - thirdTime));
+            LOGGER.info(JsonUtils.toJSon(emp));
+        } finally {
+            if (sqlSession != null) {
+                sqlSession.close();
+            }
+        }
+    }
+
+
+    @Test
+    public void testCache(){
+        SqlSession sqlSession = null;
+        try {
+            sqlSession = MyBatisUtils.getSqlSessioinFactory().openSession();
+            EmployeeMapper employeeMapper = sqlSession.getMapper(EmployeeMapper.class);
+            //使用缓存
+            long firstTime = System.currentTimeMillis();
+            Employee emp = employeeMapper.getEmployee(1);
+            long secondTime = System.currentTimeMillis();
+            System.out.println("firstTime: " + (secondTime - firstTime));
+            employeeMapper.update(emp.getId());
+            long thirdTime = System.currentTimeMillis();
+            emp = employeeMapper.getEmployee(1);
+            long endTime = System.currentTimeMillis();
+            System.out.println("secondTime: " + (endTime - thirdTime));
             LOGGER.info(JsonUtils.toJSon(emp));
         } finally {
             if (sqlSession != null) {
