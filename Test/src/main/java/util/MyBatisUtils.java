@@ -1,6 +1,8 @@
 package util;
 
+import org.apache.ibatis.builder.xml.XMLConfigBuilder;
 import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
@@ -26,7 +28,9 @@ public class MyBatisUtils {
         try {
             try {
                 inputStream = Resources.getResourceAsStream(DEFAULT_CONFIT_FILE);
-                sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+                XMLConfigBuilder xmlConfigBuilder = new XMLConfigBuilder(inputStream,null,null);
+                Configuration configuration = xmlConfigBuilder.parse();
+                sqlSessionFactory = new SqlSessionFactoryBuilder().build(configuration);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -41,6 +45,27 @@ public class MyBatisUtils {
         }
         return sqlSessionFactory;
     }
+
+    public static SqlSessionFactory getSessionFactory(){
+        InputStream inputStream = null;
+        SqlSessionFactory sessionFactory = null;
+        try {
+            inputStream = Resources.getResourceAsStream(DEFAULT_CONFIT_FILE);
+            sessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally {
+            if(inputStream != null){
+                try {
+                    inputStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return sessionFactory;
+    }
+
 
     private static class SqlSessionFactoryHandler{}
 }
