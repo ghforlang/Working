@@ -81,9 +81,10 @@ public class TestMyPlugin {
             pageParams.setPageSize(5);
             paramMap.put("roleName", "张三");
             paramMap.put("page", pageParams);
-            userMapper.selectUserByMap(paramMap);
+            List<User> userList = userMapper.selectUserByMap(paramMap);
             LOGGER.info("总条数==>" + pageParams.getTotal());
             LOGGER.info("总页数 ==>" + pageParams.getTotalPage());
+            LOGGER.info(JsonUtils.toJSon(userList));
         } finally {
             sqlSession.close();
         }

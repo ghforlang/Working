@@ -19,11 +19,11 @@
         select * from user where id = #{id}
     </select>
 
-    <insert id="save" useGeneratedKeys="true" keyProperty="id" parameterType="myBatis.po.User">
-        insert into user(user_name,password,role_name,note_info,create_time,update_time)
-        values
-        (#{userName},#{password},#{roleName},#{noteInfo},now(),now())
-    </insert>
+    <!--<insert id="save" useGeneratedKeys="true" keyProperty="id" parameterType="myBatis.po.User">-->
+        <!--insert into user(user_name,password,role_name,note_info,create_time,update_time)-->
+        <!--values-->
+        <!--(#{userName},#{password},#{roleName},#{noteInfo},now(),now())-->
+    <!--</insert>-->
 
     <select id="selectAllUser" parameterType="myBatis.plugin.TestPageParams1" resultType="myBatis.po.User">
         select id, role_name as roleName, note_info from user
