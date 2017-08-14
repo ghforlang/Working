@@ -209,9 +209,9 @@ public class TestStream {
 
     @Test
     public void testGroupBy(){
-//        Map<Integer,List<User>> userGroups = Stream.generate(new UserSupplier())
-//                .limit(5)
-//                .collect(Collectors.groupingBy(null));
+        Map<Integer,List<User>> userGroups = Stream.generate(new UserSupplier())
+                .limit(5)
+                .collect(Collectors.groupingBy(null));
     }
 
     @Test
