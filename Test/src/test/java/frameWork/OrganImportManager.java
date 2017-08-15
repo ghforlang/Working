@@ -25,9 +25,9 @@ import java.util.Map;
  *  
  */
 public class OrganImportManager {
-    public  List<OrganImportParam> batchImport(List<OrganImportParam> paramList){
+    public  List<OrganImportParam> batchImport(HttpServletResponse response,List<OrganImportParam> paramList) throws IOException, WriteException {
         List<OrganImportParam> failList = new ArrayList<>();
-
+        List<OrganImportParam> importList = new ArrayList<>();
         List<String> existIds = null;
         List<String> organIds = new ArrayList<>();
         if(CollectionUtils.isEmpty(paramList)){
@@ -46,10 +46,15 @@ public class OrganImportManager {
                 }
                 if(!failList.contains(param)){
                     //执行插入数据库操作
+                    importList.add(param);
                     param.setImported(true);
                 }
             });
-
+            List<MtcOrganDO> organDOList = params2OrganDOList(importList);
+            //批量保存
+            save(organDOList);
+            //生成excel表单
+            generateErrorSheet(response,failList);
         }
         return failList;
     }
@@ -60,10 +65,30 @@ public class OrganImportManager {
         return map;
     }
 
+    private void save(List<MtcOrganDO> organList){
+
+    }
+
+    private List<MtcOrganDO> params2OrganDOList(List<OrganImportParam> paramList){
+        List<MtcOrganDO> organList = new ArrayList<>();
+        if(!CollectionUtils.isEmpty(paramList)){
+            paramList.forEach(param ->{
+                MtcOrganDO organDO = new MtcOrganDO();
+                organDO.setIsDeleted(0);
+                organDO.setOrganLevel(param.getOrganLevel());
+                organDO.setOrganType(param.getOrganType());
+                organDO.setOrganId(param.getOrganUuid());
+                organList.add(organDO);
+            });
+        }
+        return organList;
+    }
+
     public void generateErrorSheet(HttpServletResponse response , List<OrganImportParam> paramList) throws IOException, WriteException {
         WritableWorkbook outPutWorkbook = Workbook.createWorkbook(new File("out.xls"));
 
         WritableSheet sheet = outPutWorkbook.createSheet("第一页", 0);
+        sheet.insertRow(0);
         Label label1 = new Label(0,0,"机构类型");
         Label label2 = new Label(1,0,"机构id");
         Label label3 = new Label(2,0,"机构级别");
@@ -87,6 +112,7 @@ public class OrganImportManager {
             row.setColumnObject(3,param.getAdminAccout());
             row.setColumnObject(4,param.getAdminName());
             row.setColumnObject(5,param.getMessage());
+            sheet.insertRow(i+1);
 //            sheet.insertRow(row);
         }
     }
