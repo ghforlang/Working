@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="workingtest.course.dao.MtcCourseMapper">
+
+    <sql id="allColumn">
+     id,course_key,course_name,course_source,course_classification,lecturer_name,lecturer_unit,lecturer_title,course_url,course_cover_url,sort_no
+  </sql>
+
+
+    <insert id="insert" parameterType="mtcCourseDO" useGeneratedKeys="true" keyProperty="id">
+    insert into mtc_course (
+         course_key,
+          course_name,
+          course_source,
+          course_classification,
+          lecturer_name,
+          lecturer_unit,
+          lecturer_title,
+          course_url,
+          course_cover_url,
+          sort_no   
+    )
+    values(
+         #{courseKey},
+          #{courseName},
+          #{courseSource},
+          #{courseClassification},
+          #{lecturerName},
+          #{lecturerUnit},
+          #{lecturerTitle},
+          #{courseUrl},
+          #{courseCoverUrl},
+          #{sortNo}  
+    )
+  </insert>
+
+    <delete id="delete">
+    delete from mtc_course
+    where id = #{id}
+  </delete>
+
+
+    <update id="update" parameterType="mtcCourseDO">
+        update mtc_course
+        <set>
+            <if test="courseKey != null">
+                course_key = #{courseKey},
+            </if>
+            <if test="courseName != null">
+                course_name = #{courseName},
+            </if>
+            <if test="courseSource != null">
+                course_source = #{courseSource},
+            </if>
+            <if test="courseClassification != null">
+                course_classification = #{courseClassification},
+            </if>
+            <if test="lecturerName != null">
+                lecturer_name = #{lecturerName},
+            </if>
+            <if test="lecturerUnit != null">
+                lecturer_unit = #{lecturerUnit},
+            </if>
+            <if test="lecturerTitle != null">
+                lecturer_title = #{lecturerTitle},
+            </if>
+            <if test="courseUrl != null">
+                course_url = #{courseUrl},
+            </if>
+            <if test="courseCoverUrl != null">
+                course_cover_url = #{courseCoverUrl},
+            </if>
+            <if test="sortNo != null">
+                sort_no = #{sortNo},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+
+    <select id="select" resultType="mtcCourseDO">
+        select
+        <include refid="allColumn"/>
+        from mtc_course
+        where id = #{id}
+    </select>
+
+    <select id="selectAll" resultType="mtcCourseDO">
+        select
+        <include refid="allColumn"/>
+        from mtc_course
+    </select>
+
+</mapper>

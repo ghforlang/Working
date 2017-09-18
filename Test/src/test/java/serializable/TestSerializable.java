@@ -12,12 +12,12 @@ import java.io.*;
  * @create 2017-08-31 18:57
  *  
  */
-public class TestStudent {
+public class TestSerializable {
 
     @Test
     public void testSerializable(){
         Student st = new Student("Tom",'M',20,3.6);
-        File file = new File("F:\\student.txt");
+        File file = new File("F:\\学习资料\\student.txt");
         try
         {
             file.createNewFile();

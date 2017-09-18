@@ -14,7 +14,7 @@ public class Student implements Serializable {
     private String name;
     private char sex;
     private int year;
-    private double gpa;
+    private transient double gpa;
 
     public Student() {
     }
@@ -56,5 +56,15 @@ public class Student implements Serializable {
 
     public void setGpa(double gpa) {
         this.gpa = gpa;
+    }
+
+    @Override
+    public String toString() {
+        return "Student[" +
+                "name='" + name + '\'' +
+                ", sex=" + sex +
+                ", year=" + year +
+                ", gpa=" + gpa +
+                ']';
     }
 }
