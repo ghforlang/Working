@@ -35,6 +35,29 @@ public enum BannerEnum {
         this.bannerId = bannerId;
     }
 
+    public static BannerEnum getAvaliableBanner(){
+        BannerEnum[] banners = BannerEnum.values();
+        for(BannerEnum banner : banners){
+            if(null == banner.getBannerId()){
+                return banner;
+            }
+        }
+        return null;
+    }
+
+    public static BannerEnum getByBannerId(Long bannerId){
+        if(null == bannerId){
+            return null;
+        }
+        BannerEnum[] banners = BannerEnum.values();
+        for(BannerEnum banner : banners){
+            if(bannerId.equals(banner.getBannerId())){
+                return banner;
+            }
+        }
+        return null;
+    }
+
     public static BannerEnum getByTypeCode(Integer typeCode){
         if(null == typeCode){
             return null;
