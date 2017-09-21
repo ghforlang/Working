@@ -1,5 +1,8 @@
 package workingtest.enums;
 
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  * TODO
  *
@@ -55,16 +58,81 @@ public enum DeptClassEnum {
     OPHTHALMOLOGY(5,4,"眼科",36),
     EMERGENCY(5,5,"急诊科",37),
     PSYCHIATRY(5,6,"精神科",38);
-
+    /**
+     * 一级分类
+     */
     private Integer firstStage;
+    /**
+     *
+     */
     private Integer secondStage;
     private String desc;
     private Integer type;
+
 
     DeptClassEnum(Integer firstStage, Integer secondStage, String desc, Integer type) {
         this.firstStage = firstStage;
         this.secondStage = secondStage;
         this.desc = desc;
+        this.type = type;
+    }
+
+    public static DeptClassEnum getByType(Integer typeCode){
+        if(null == typeCode){
+            return null;
+        }
+        DeptClassEnum[] values = DeptClassEnum.values();
+        for(DeptClassEnum value : values){
+            if(typeCode.equals(value.getType())){
+                return value;
+            }
+        }
+        return null;
+    }
+
+    public static List<DeptClassEnum> getByFirstStage(Integer firstStage){
+        if(null == firstStage){
+            return null;
+        }
+        List<DeptClassEnum> firstStageDept = new LinkedList<>();
+        DeptClassEnum[] values = DeptClassEnum.values();
+        for(DeptClassEnum value : values){
+            if(firstStage.equals(value.getFirstStage())){
+                firstStageDept.add(value);
+            }
+        }
+        return firstStageDept;
+    }
+
+    public Integer getFirstStage() {
+        return firstStage;
+    }
+
+    public void setFirstStage(Integer firstStage) {
+        this.firstStage = firstStage;
+    }
+
+    public Integer getSecondStage() {
+        return secondStage;
+    }
+
+    public void setSecondStage(Integer secondStage) {
+        this.secondStage = secondStage;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
         this.type = type;
     }
 }
