@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="workingtest.dao.MtcCourseSigninMapper" >
+
+  <sql id="allColumn" >
+     id,course_id,mtc_id,course_name,lecturer_name,learner_name,learner_unit,learner_title,signin_time,is_deleted,gmt_created,gmt_modified
+  </sql>
+  
+  
+  <insert id="insert" parameterType="mtcCourseSigninDO" useGeneratedKeys="true" keyProperty="id" >
+    insert into mtc_course_signin (
+         course_id,
+          mtc_id,
+          course_name,
+          lecturer_name,
+          learner_name,
+          learner_unit,
+          learner_title,
+          signin_time,
+          is_deleted,
+          gmt_created,
+          gmt_modified   
+    )
+    values(
+         #{courseId},
+          #{mtcId},
+          #{courseName},
+          #{lecturerName},
+          #{learnerName},
+          #{learnerUnit},
+          #{learnerTitle},
+          #{signinTime},
+          #{isDeleted},
+          #{gmtCreated},
+          #{gmtModified}  
+    )
+  </insert>
+
+  <delete id="delete">
+    delete from mtc_course_signin
+    where id = #{id}
+  </delete>
+
+
+  <update id="update" parameterType="mtcCourseSigninDO">
+    update mtc_course_signin
+    <set >
+        <if test="courseId != null" >
+            course_id = #{courseId},
+        </if>
+        <if test="mtcId != null" >
+            mtc_id = #{mtcId},
+        </if>
+        <if test="courseName != null" >
+            course_name = #{courseName},
+        </if>
+        <if test="lecturerName != null" >
+            lecturer_name = #{lecturerName},
+        </if>
+        <if test="learnerName != null" >
+            learner_name = #{learnerName},
+        </if>
+        <if test="learnerUnit != null" >
+            learner_unit = #{learnerUnit},
+        </if>
+        <if test="learnerTitle != null" >
+            learner_title = #{learnerTitle},
+        </if>
+        <if test="signinTime != null" >
+            signin_time = #{signinTime},
+        </if>
+        <if test="isDeleted != null" >
+            is_deleted = #{isDeleted},
+        </if>
+        <if test="gmtCreated != null" >
+            gmt_created = #{gmtCreated},
+        </if>
+        <if test="gmtModified != null" >
+            gmt_modified = #{gmtModified},
+        </if>
+    </set>
+    where id = #{id}
+  </update>
+
+  
+  <select id="select" resultType="mtcCourseSigninDO">
+    select 
+    <include refid="allColumn" />
+    from mtc_course_signin
+    where id = #{id}
+  </select>
+
+  <select id="selectAll" resultType="mtcCourseSigninDO">
+    select 
+    <include refid="allColumn" />
+    from mtc_course_signin
+  </select>
+  
+</mapper>
