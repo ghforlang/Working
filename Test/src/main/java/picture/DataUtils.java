@@ -30,8 +30,12 @@ public class DataUtils {
         model.setBody(body);
 
         ModelFooter footer = new ModelFooter();
+        footer.setCopyWriting1(Constants.COPYWRITTING_ONE);
+        footer.setCopyWriting2(Constants.COPYWRITTING_TWO);
         footer.setAppStoreOnlineName(Constants.APP_ONLINE_STORE_NAME);
         footer.setDrugStoreName(Constants.DRUG_STORE_NAME);
+        footer.setQrCodeUrl("http://blog.csdn.net/qq_19707521/article/details/69568566");
+        footer.setNote(Constants.FOOTER_NOTE_CONTENT);
         model.setFooter(footer);
 
         return model;

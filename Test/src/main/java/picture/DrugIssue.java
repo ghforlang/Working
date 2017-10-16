@@ -25,7 +25,7 @@ public class DrugIssue {
     /**
      * 医嘱（继用、孕妇忌用、儿童忌用）
      */
-    private String DoctorAdvice;
+    private String doctorAdvice;
     /**
      * 用法（口服、注射）
      */
@@ -83,14 +83,6 @@ public class DrugIssue {
         this.unit = unit;
     }
 
-    public String getDoctorAdvice() {
-        return DoctorAdvice;
-    }
-
-    public void setDoctorAdvice(String doctorAdvice) {
-        DoctorAdvice = doctorAdvice;
-    }
-
     public String getUsage() {
         return usage;
     }
@@ -139,20 +131,11 @@ public class DrugIssue {
         this.totalUnit = totalUnit;
     }
 
-    @Override
-    public String toString() {
-        return "DrugIssue[" +
-                "drugStandName='" + drugStandName + '\'' +
-                ", specification='" + specification + '\'' +
-                ", unitsPerBox=" + unitsPerBox +
-                ", unit='" + unit + '\'' +
-                ", DoctorAdvice='" + DoctorAdvice + '\'' +
-                ", usage='" + usage + '\'' +
-                ", daliyTimes='" + daliyTimes + '\'' +
-                ", dosagePerTime=" + dosagePerTime +
-                ", drugDays=" + drugDays +
-                ", total=" + total +
-                ", totalUnit='" + totalUnit + '\'' +
-                ']';
+    public String getDoctorAdvice() {
+        return doctorAdvice;
+    }
+
+    public void setDoctorAdvice(String doctorAdvice) {
+        this.doctorAdvice = doctorAdvice;
     }
 }
