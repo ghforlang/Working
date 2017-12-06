@@ -1,12 +1,21 @@
-# unpacked plugin folders
-plugins/**/*
 
-# files directory where uploads go
-files
+.DS_Store
 
-# DBMigrate plugin: generated SQL
-db/sql
+### Eclipse
+.classpath
+.project
+.settings
 
-# AssetBundler plugin: generated bundles
-javascripts/bundles
-stylesheets/bundles
+### IntelliJ IDEA
+.idea
+*.iml
+out/
+target/
+*.class
+
+### Maven
+target/
+.mvn
+
+### Gradle
+.gradle
