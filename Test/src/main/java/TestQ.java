@@ -9,4 +9,14 @@
  * @create 2017-03-31 15:20
  **/
 public class TestQ {
+
+    private void f1(){
+        f1();
+    }
+
+    public static void main(String[] args) {
+        new TestQ().f1();
+    }
+
+
 }
