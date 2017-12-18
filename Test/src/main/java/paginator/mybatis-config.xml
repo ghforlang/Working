@@ -16,5 +16,6 @@
     </environments>
     <mappers>
         <mapper resource = "paginator/mapper/UserMapper.xml"/>
+        <mapper resource="workingtest/mapper/DeviceUpgradeMapper.xml"/>
     </mappers>
 </configuration>

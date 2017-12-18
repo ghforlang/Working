@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="myBatis.dao.DoctorFeatureMapper">
+    <!-- 基础DO -->
+    <resultMap type="myBatis.dataobject.DoctorFeatureDO" id="doctorResult">
+        <id column="id" property="id"/>
+        <result column="area_id" property="areaId"/>
+        <result column="area_name" property="areaName"/>
+        <result column="doctor_user_id" property="doctorUseId"/>
+    </resultMap>
+
+    <!--<select id="findUserById" resultType="myBatis.po.User" >-->
+    <select id="getById" resultType="myBatis.dao.DoctorFeatureMapper" resultMap="doctorResult">
+        SELECT area_id, area_name FROM `doctor_feature` WHERE id = 4;
+    </select>
+</mapper>

@@ -62,6 +62,7 @@
         <!--<package name="myBatis.dao"/>-->
         <!--采用xml文件相对路径加载mapper-->
         <mapper resource="./mapper/UserMapper.xml"/>
+        <mapper resource="./mapper/DoctorFeatureMapper.xml"/>
         <mapper resource="./mapper/EmployeeMapper.xml"/>
         <mapper resource="./mapper/EmployeeCardMapper.xml"/>
         <mapper resource="./mapper/FemaleEmployeeMapper.xml"/>
