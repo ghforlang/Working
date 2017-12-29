@@ -51,7 +51,6 @@ public class ProcessTester {
     }
 
     public static class TryCatch implements Callable<Boolean>{
-
         @Override
         public Boolean call() throws Exception {
             long start = System.currentTimeMillis();
@@ -60,12 +59,10 @@ public class ProcessTester {
                 try{
                     exception();
                 }catch (ExtCustomException ex){
-                    System.out.println(ex.message);
+//                    System.out.println(ex.message);
                 }
             }
-
             trycatchTimes.add(System.currentTimeMillis() - start);
-
             return true;
         }
 
@@ -81,7 +78,7 @@ public class ProcessTester {
             for(int i=0;i<LOOP;i++){
                 ExtCustomException e = exception();
                 if(e instanceof ExtCustomException){
-                    System.out.println(e.message);
+//                    System.out.println(e.message);
                 }
             }
 
