@@ -59,6 +59,7 @@ public class NewExceptionTester {
             for(int i=0;i<LOOP;i++){
                 new CustomObject("");
             }
+            newObjectTimes.add(System.currentTimeMillis() - start);
             return true;
         }
     }
