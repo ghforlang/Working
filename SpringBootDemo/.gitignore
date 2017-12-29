@@ -1,0 +1,21 @@
+
+.DS_Store
+
+### Eclipse
+.classpath
+.project
+.settings
+
+### IntelliJ IDEA
+.idea
+*.iml
+out/
+target/
+*.class
+
+### Maven
+target/
+.mvn
+
+### Gradle
+.gradle
