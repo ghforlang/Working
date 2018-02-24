@@ -1,10 +1,9 @@
 package other;
 
 import myBatis.po.User;
+import org.apache.commons.lang.StringUtils;
 
-import java.util.HashSet;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 
 /**
@@ -17,8 +16,12 @@ import java.util.TreeSet;
  */
 public class TestOther implements OtherInterface {
     public static void main(String[] args) {
-        Set<Integer> set = new HashSet<>();
-        Set<Integer> treeSet = new TreeSet<>();
+//        Set<Integer> set = new HashSet<>();
+//        Set<Integer> treeSet = new TreeSet<>();
+
+        List<String> list = new ArrayList<>();
+        System.out.println(StringUtils.join(list,","));;
+
     }
 
     @Override

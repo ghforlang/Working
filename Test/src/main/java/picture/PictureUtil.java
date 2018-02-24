@@ -225,8 +225,10 @@ public class PictureUtil {
     }
 
     public static void main(String[] args) throws IOException, WriterException {
+        long start = System.currentTimeMillis();
 
         generatePrescriptionGraphic("D://tools//picture//test2.jpg",DataUtils.getDataModel(),400,900);
+        System.out.println(System.currentTimeMillis() - start);
 //        File file = new File("D://tools//picture//qr.jpg");
 
 //        ImageIO.write(createQrCode("https://www.baidu.com/pan/souotjojoutosl.jsp",200),"jpeg",new FileOutputStream(file));

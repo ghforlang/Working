@@ -2,6 +2,7 @@ package concurrent;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -21,16 +22,17 @@ public class ProcessTester {
     private static final ExecutorService POOL                 = Executors.newFixedThreadPool(40);
 
     public static void main(String[] args) throws Exception{
-        List<Callable<Boolean>> all = new ArrayList<>();
-        all.addAll(tasks(new ProcessTester.TryCatch()));
-        all.addAll(tasks(new ProcessTester.IfElse()));
-
-        POOL.invokeAll(all);
-
-        System.out.println("tc:\t\t" + total(trycatchTimes));
-        System.out.println("ie:\t\t" + total(ifelseTimes));
-
-        POOL.shutdown();
+//        List<Callable<Boolean>> all = new ArrayList<>();
+//        all.addAll(tasks(new ProcessTester.TryCatch()));
+//        all.addAll(tasks(new ProcessTester.IfElse()));
+//
+//        POOL.invokeAll(all);
+//
+//        System.out.println("tc:\t\t" + total(trycatchTimes));
+//        System.out.println("ie:\t\t" + total(ifelseTimes));
+//
+//        POOL.shutdown();
+        System.out.println(Objects.equals(false,Boolean.FALSE));
     }
 
 
