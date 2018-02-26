@@ -1,8 +1,9 @@
 package frp.wrapper;
 
-import frp.api.Api;
-import frp.api.CallBack;
-import frp.api.impl.DefaultApi;
+import frp.AsynJob;
+import frp.demo1.Api;
+import frp.demo1.CallBack;
+import frp.demo1.impl.DefaultApi;
 import frp.bean.LocationBean;
 
 /**
@@ -19,31 +20,41 @@ public class ApiWrapper {
         api = new DefaultApi();
     }
 
-    public void getLocation(String address, final CallBack<LocationBean> callBack){
-        api.getLocation(address, new Api.LocationCallBack() {
+    public AsynJob<LocationBean> getLocation(String address){
+        return new AsynJob<LocationBean>() {
             @Override
-            public void onLocationReceived(LocationBean bean) {
-                callBack.onResult(bean);
-            }
+            public void start(final CallBack<LocationBean> callBack) {
+                api.getLocation(address, new Api.LocationCallBack() {
+                    @Override
+                    public void onLocationReceived(LocationBean bean) {
+                        callBack.onResult(bean);
+                    }
 
-            @Override
-            public void onError() {
-                callBack.onError();
+                    @Override
+                    public void onError() {
+                        callBack.onError();
+                    }
+                });
             }
-        });
+        };
     }
 
-    public void submitLocation(LocationBean bean,final CallBack<Void> callBack){
-        api.submitLocation(bean, new Api.SubmitCallBack() {
+    public AsynJob<Void> submitLocation(LocationBean bean){
+        return new AsynJob<Void>() {
             @Override
-            public void onSubmitReceived() {
-                callBack.onResult(null);
-            }
+            public void start(CallBack<Void> callBack) {
+                api.submitLocation(bean, new Api.SubmitCallBack() {
+                    @Override
+                    public void onSubmitReceived() {
+                        callBack.onResult(null);
+                    }
 
-            @Override
-            public void onError() {
-                callBack.onError();
+                    @Override
+                    public void onError() {
+                        callBack.onError();
+                    }
+                });
             }
-        });
+        };
     }
 }

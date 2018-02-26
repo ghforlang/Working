@@ -1,6 +1,7 @@
 package frp.biz;
 
-import frp.api.CallBack;
+import frp.AsynJob;
+import frp.Func;
 import frp.bean.LocationBean;
 import frp.wrapper.ApiWrapper;
 
@@ -23,25 +24,47 @@ public class LocationHelper {
         return helper;
     }
 
-    void commit(String address, final CallBack<Void> callBack){
-        try{
-            api.getLocation(address, new CallBack<LocationBean>() {
-                @Override
-                public void onResult(LocationBean result) {
-                    api.submitLocation(result,callBack);
-                }
+    AsynJob<Void> commit(String address){
+        final AsynJob<LocationBean> locationJob = api.getLocation(address);
 
-                @Override
-                public void onError() {
-                    callBack.onError();
-                }
-            });
-
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
+        AsynJob<Void> submitJob = locationJob.map(new Func<LocationBean, AsynJob<Void>>() {
+            @Override
+            public AsynJob<Void> call(LocationBean bean) {
+                return api.submitLocation(bean);
+            }
+        });
+        return submitJob;
+//        new AsynJob<Void>() {
+//            @Override
+//            public void start(final CallBack<Void> callBack) {
+//                try{
+//                    locationJob.start(new CallBack<LocationBean>() {
+//                        @Override
+//                        public void onResult(LocationBean result) {
+//                            final AsynJob<Void> submitLocationJob = api.submitLocation(result);
+//                            submitLocationJob.start(new CallBack<Void>() {
+//                                @Override
+//                                public void onResult(Void result) {
+//                                    callBack.onResult(result);
+//                                }
+//
+//                                @Override
+//                                public void onError() {
+//                                    callBack.onError();
+//                                }
+//                            });
+//                        }
+//
+//                        @Override
+//                        public void onError() {
+//                            callBack.onError();
+//                        }
+//                    });
+//                }catch (Exception e){
+//                    e.printStackTrace();
+//                }
+//            }
+//        };
     }
 
     public interface CommitCallBack{
