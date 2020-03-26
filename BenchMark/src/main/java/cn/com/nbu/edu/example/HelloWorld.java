@@ -1,25 +1,27 @@
-package jmh.helloworld;
+package cn.com.nbu.edu.example;
 
-import org.openjdk.jmh.annotations.Benchmark;
-import org.openjdk.jmh.annotations.Warmup;
+import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.runner.Runner;
 import org.openjdk.jmh.runner.RunnerException;
 import org.openjdk.jmh.runner.options.Options;
 import org.openjdk.jmh.runner.options.OptionsBuilder;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * @author fanwh
  * @version v1.0
  * @decription
- * @create on 2017/12/4 9:58
+ * @create on 2018/8/6 19:43
  */
+@State(Scope.Thread)
 public class HelloWorld {
 
     @Benchmark
-    @Warmup
-    public void wellHelloThere() {
-        System.out.println("hello world");
-        // this method was intentionally left blank.
+    @BenchmarkMode(Mode.Throughput)
+    @OutputTimeUnit(TimeUnit.MILLISECONDS)
+    public void printHelloWorld(){
+        System.out.println("hello World");
     }
 
     public static void main(String[] args) throws RunnerException {
@@ -27,7 +29,6 @@ public class HelloWorld {
                 .include(HelloWorld.class.getSimpleName())
                 .forks(1)
                 .build();
-
         new Runner(opt).run();
     }
 }

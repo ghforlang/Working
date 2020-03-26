@@ -11,7 +11,7 @@ import java.util.Map;
  */
 public class TestHttpUtils {
 
-    private static final  String url = "http://fs.static.guahao-inc.com/bo227397415?token=NTdhYjJiY2IyOGRlMTIwYTk2ZmZkZmY2MmFjMmNjODBfTUQ1COUSTOM";
+    private static final  String url = "http://baidu.com/bo227397415?token=NTdhYjJiY2IyOGRlMTIwYTk2ZmZkZmY2MmFjMmNjODBfTUQ1COUSTOM";
 
     public static void main(String[] args) {
 //        testHttpUtils();

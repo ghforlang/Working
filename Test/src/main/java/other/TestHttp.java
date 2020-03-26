@@ -21,8 +21,7 @@ import java.net.URLDecoder;
  */
 public class TestHttp {
     public static void main(String[] args) {
-        String url = "http://fs.static.guahao-inc.com/bo227397415?token=NTdhYjJiY2IyOGRlMTIwYTk2ZmZkZmY2MmFjMmNjODBfTUQ1COUSTOM";
-//        String url = "https://download.jetbrains.8686c.com/idea/ideaIU-2017.2.3.dmg";
+        String url = "https://download.jetbrains.8686c.com/idea/ideaIU-2017.2.3.dmg";
 //        String url = "https://dldir1.qq.com/qqfile/qq/QQ8.9.4/21603/QQ8.9.4.exe";
         long startTime = System.currentTimeMillis();
         try {

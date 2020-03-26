@@ -1,7 +1,9 @@
 import org.joda.time.DateTime;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 /**
@@ -13,6 +15,14 @@ public class TestTime {
 //        testJoda();
 //        testJodaDay(90);
 //        testPlusDays();
+//        Long time = 1525250900755L;
+//        Date dae = new Date(time);
+//        System.out.println(dae);
+        DecimalFormat df = new DecimalFormat("0.0");
+        System.out.println(df.format(0.456));
+
+        DecimalFormat df1 = new DecimalFormat("#.0");
+        System.out.println(df1.format(0.45654));
     }
 
     public static void testTimeStamp(){

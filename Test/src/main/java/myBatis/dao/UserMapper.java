@@ -29,7 +29,7 @@ public interface UserMapper {
     //不含分页参数，就不会启用
     public User findUserById (Long userId);
     //继承方式
-    public List<User> selectAllUser(TestPageParams1 param);
+//    public List<User> selectAllUser(TestPageParams1 param);
     //参数为POJO，但是POJO内部包含一个类型为com.learn.mybatis.plugin.PageParams的属性
     public List<User> selectAllUser2(TestPageParams2 param);
     @Results(

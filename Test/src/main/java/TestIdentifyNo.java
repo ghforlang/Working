@@ -15,7 +15,7 @@ public class TestIdentifyNo {
 //
 //        System.out.println();
 
-        String str = "http://fs.static.guahao-inc.com/GEH27541663.jpg?token=NWMyM2E3NWFiY2YzNTQ1MmRiOTYzOWE3YzgwYTFlYTlfTUQ1COUSTOM";
+        String str = "http://baidu.com/GEH27541663.jpg?token=NWMyM2E3NWFiY2YzNTQ1MmRiOTYzOWE3YzgwYTFlYTlfTUQ1COUSTOM";
         int index = str.lastIndexOf("/");
         str = str.substring(index + 1);
         int fileIndex = 1;
