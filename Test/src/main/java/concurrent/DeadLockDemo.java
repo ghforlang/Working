@@ -11,7 +11,6 @@ public class DeadLockDemo {
 
     private static void deadLock(){
         Thread threadA = new Thread(new Runnable() {
-            @Override
             public void run() {
                 System.out.println("get resource_A ！");
                 synchronized (resource_A){
@@ -28,7 +27,6 @@ public class DeadLockDemo {
         });
 
         Thread threadB = new Thread(new Runnable() {
-            @Override
             public void run() {
                 System.out.println("get resource_B ！");
                 synchronized (resource_B){
