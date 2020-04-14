@@ -1,4 +1,4 @@
-package concurrent;
+package concurrent.thread;
 
 public class ThreadStateDemo {
 
